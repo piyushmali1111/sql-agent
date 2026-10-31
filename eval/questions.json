@@ -1,0 +1,626 @@
+[
+  {
+    "id": "q_001",
+    "intent_id": "intent_01",
+    "question": "What is the total number of customers registered?",
+    "gold_sql": "SELECT COUNT(*) AS total_customers FROM customers;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_002",
+    "intent_id": "intent_01",
+    "question": "How many customers are there in the database?",
+    "gold_sql": "SELECT COUNT(*) AS total_customers FROM customers;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_003",
+    "intent_id": "intent_01",
+    "question": "Count all customer accounts in the system.",
+    "gold_sql": "SELECT COUNT(*) AS total_customers FROM customers;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_004",
+    "intent_id": "intent_02",
+    "question": "Which products have less than 20 items in stock?",
+    "gold_sql": "SELECT id, name, stock_quantity FROM products WHERE stock_quantity < 20 ORDER BY stock_quantity ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_005",
+    "intent_id": "intent_02",
+    "question": "List all products with stock quantity below 20.",
+    "gold_sql": "SELECT id, name, stock_quantity FROM products WHERE stock_quantity < 20 ORDER BY stock_quantity ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_006",
+    "intent_id": "intent_02",
+    "question": "Find low-stock inventory items where quantity is under 20.",
+    "gold_sql": "SELECT id, name, stock_quantity FROM products WHERE stock_quantity < 20 ORDER BY stock_quantity ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_007",
+    "intent_id": "intent_03",
+    "question": "Which customers signed up during the year 2024?",
+    "gold_sql": "SELECT id, name, signup_date FROM customers WHERE signup_date >= '2024-01-01' AND signup_date <= '2024-12-31' ORDER BY signup_date ASC;",
+    "difficulty": "easy",
+    "category": "date"
+  },
+  {
+    "id": "q_008",
+    "intent_id": "intent_03",
+    "question": "List all customer signups in 2024.",
+    "gold_sql": "SELECT id, name, signup_date FROM customers WHERE signup_date >= '2024-01-01' AND signup_date <= '2024-12-31' ORDER BY signup_date ASC;",
+    "difficulty": "easy",
+    "category": "date"
+  },
+  {
+    "id": "q_009",
+    "intent_id": "intent_03",
+    "question": "Find customers who registered between January 1 2024 and December 31 2024.",
+    "gold_sql": "SELECT id, name, signup_date FROM customers WHERE signup_date >= '2024-01-01' AND signup_date <= '2024-12-31' ORDER BY signup_date ASC;",
+    "difficulty": "easy",
+    "category": "date"
+  },
+  {
+    "id": "q_010",
+    "intent_id": "intent_04",
+    "question": "What is the total revenue from completed orders?",
+    "gold_sql": "SELECT ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS total_revenue FROM orders o JOIN order_items oi ON o.id = oi.order_id WHERE o.status = 'Completed';",
+    "difficulty": "easy",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_011",
+    "intent_id": "intent_04",
+    "question": "Calculate total sales amount for all completed orders.",
+    "gold_sql": "SELECT ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS total_revenue FROM orders o JOIN order_items oi ON o.id = oi.order_id WHERE o.status = 'Completed';",
+    "difficulty": "easy",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_012",
+    "intent_id": "intent_04",
+    "question": "How much revenue have we made on orders that are completed?",
+    "gold_sql": "SELECT ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS total_revenue FROM orders o JOIN order_items oi ON o.id = oi.order_id WHERE o.status = 'Completed';",
+    "difficulty": "easy",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_013",
+    "intent_id": "intent_05",
+    "question": "How many orders are in each status?",
+    "gold_sql": "SELECT status, COUNT(*) AS order_count FROM orders GROUP BY status ORDER BY order_count DESC;",
+    "difficulty": "easy",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_014",
+    "intent_id": "intent_05",
+    "question": "Show the count of orders grouped by their fulfillment status.",
+    "gold_sql": "SELECT status, COUNT(*) AS order_count FROM orders GROUP BY status ORDER BY order_count DESC;",
+    "difficulty": "easy",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_015",
+    "intent_id": "intent_05",
+    "question": "Break down order volumes across all order statuses.",
+    "gold_sql": "SELECT status, COUNT(*) AS order_count FROM orders GROUP BY status ORDER BY order_count DESC;",
+    "difficulty": "easy",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_016",
+    "intent_id": "intent_06",
+    "question": "List all customers located in California.",
+    "gold_sql": "SELECT id, name, city FROM customers WHERE state = 'CA' ORDER BY name ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_017",
+    "intent_id": "intent_06",
+    "question": "Which customers reside in the state of CA?",
+    "gold_sql": "SELECT id, name, city FROM customers WHERE state = 'CA' ORDER BY name ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_018",
+    "intent_id": "intent_06",
+    "question": "Show California customer names and their cities.",
+    "gold_sql": "SELECT id, name, city FROM customers WHERE state = 'CA' ORDER BY name ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_019",
+    "intent_id": "intent_07",
+    "question": "List all products along with their category name.",
+    "gold_sql": "SELECT p.id, p.name AS product_name, c.name AS category_name, p.unit_price FROM products p JOIN categories c ON p.category_id = c.id ORDER BY p.name ASC;",
+    "difficulty": "medium",
+    "category": "join"
+  },
+  {
+    "id": "q_020",
+    "intent_id": "intent_07",
+    "question": "Show products and the category each belongs to.",
+    "gold_sql": "SELECT p.id, p.name AS product_name, c.name AS category_name, p.unit_price FROM products p JOIN categories c ON p.category_id = c.id ORDER BY p.name ASC;",
+    "difficulty": "medium",
+    "category": "join"
+  },
+  {
+    "id": "q_021",
+    "intent_id": "intent_07",
+    "question": "Display product names, categories, and unit prices.",
+    "gold_sql": "SELECT p.id, p.name AS product_name, c.name AS category_name, p.unit_price FROM products p JOIN categories c ON p.category_id = c.id ORDER BY p.name ASC;",
+    "difficulty": "medium",
+    "category": "join"
+  },
+  {
+    "id": "q_022",
+    "intent_id": "intent_08",
+    "question": "Find all orders that were shipped to London or Berlin.",
+    "gold_sql": "SELECT id, customer_id, order_date, status, shipping_city FROM orders WHERE shipping_city IN ('London', 'Berlin') ORDER BY order_date DESC;",
+    "difficulty": "medium",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_023",
+    "intent_id": "intent_08",
+    "question": "Show orders with shipping destination in Berlin or London.",
+    "gold_sql": "SELECT id, customer_id, order_date, status, shipping_city FROM orders WHERE shipping_city IN ('London', 'Berlin') ORDER BY order_date DESC;",
+    "difficulty": "medium",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_024",
+    "intent_id": "intent_08",
+    "question": "List orders delivered to London or Berlin.",
+    "gold_sql": "SELECT id, customer_id, order_date, status, shipping_city FROM orders WHERE shipping_city IN ('London', 'Berlin') ORDER BY order_date DESC;",
+    "difficulty": "medium",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_025",
+    "intent_id": "intent_09",
+    "question": "What is the average discount percentage offered in each employee region?",
+    "gold_sql": "SELECT e.region, ROUND(AVG(oi.discount) * 100, 2) AS avg_discount_pct FROM employees e JOIN orders o ON e.id = o.employee_id JOIN order_items oi ON o.id = oi.order_id GROUP BY e.region ORDER BY avg_discount_pct DESC;",
+    "difficulty": "medium",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_026",
+    "intent_id": "intent_09",
+    "question": "Show average discount by sales representative region.",
+    "gold_sql": "SELECT e.region, ROUND(AVG(oi.discount) * 100, 2) AS avg_discount_pct FROM employees e JOIN orders o ON e.id = o.employee_id JOIN order_items oi ON o.id = oi.order_id GROUP BY e.region ORDER BY avg_discount_pct DESC;",
+    "difficulty": "medium",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_027",
+    "intent_id": "intent_09",
+    "question": "Compare the average order item discount across different sales regions.",
+    "gold_sql": "SELECT e.region, ROUND(AVG(oi.discount) * 100, 2) AS avg_discount_pct FROM employees e JOIN orders o ON e.id = o.employee_id JOIN order_items oi ON o.id = oi.order_id GROUP BY e.region ORDER BY avg_discount_pct DESC;",
+    "difficulty": "medium",
+    "category": "aggregate"
+  },
+  {
+    "id": "q_028",
+    "intent_id": "intent_10",
+    "question": "What are the top 5 largest payments received?",
+    "gold_sql": "SELECT o.id, p.amount, p.method FROM orders o JOIN payments p ON o.id = p.order_id ORDER BY p.amount DESC LIMIT 5;",
+    "difficulty": "medium",
+    "category": "ranking"
+  },
+  {
+    "id": "q_029",
+    "intent_id": "intent_10",
+    "question": "Show the 5 highest payment transactions.",
+    "gold_sql": "SELECT o.id, p.amount, p.method FROM orders o JOIN payments p ON o.id = p.order_id ORDER BY p.amount DESC LIMIT 5;",
+    "difficulty": "medium",
+    "category": "ranking"
+  },
+  {
+    "id": "q_030",
+    "intent_id": "intent_10",
+    "question": "List the top 5 payments by amount along with their payment method.",
+    "gold_sql": "SELECT o.id, p.amount, p.method FROM orders o JOIN payments p ON o.id = p.order_id ORDER BY p.amount DESC LIMIT 5;",
+    "difficulty": "medium",
+    "category": "ranking"
+  },
+  {
+    "id": "q_031",
+    "intent_id": "intent_11",
+    "question": "Which product categories contain at least 10 products?",
+    "gold_sql": "SELECT c.id, c.name, COUNT(p.id) AS product_count FROM categories c JOIN products p ON c.id = p.category_id GROUP BY c.id, c.name HAVING COUNT(p.id) >= 10 ORDER BY product_count DESC;",
+    "difficulty": "medium",
+    "category": "group_having"
+  },
+  {
+    "id": "q_032",
+    "intent_id": "intent_11",
+    "question": "List categories having 10 or more items in inventory.",
+    "gold_sql": "SELECT c.id, c.name, COUNT(p.id) AS product_count FROM categories c JOIN products p ON c.id = p.category_id GROUP BY c.id, c.name HAVING COUNT(p.id) >= 10 ORDER BY product_count DESC;",
+    "difficulty": "medium",
+    "category": "group_having"
+  },
+  {
+    "id": "q_033",
+    "intent_id": "intent_11",
+    "question": "Find categories with at least 10 products listed.",
+    "gold_sql": "SELECT c.id, c.name, COUNT(p.id) AS product_count FROM categories c JOIN products p ON c.id = p.category_id GROUP BY c.id, c.name HAVING COUNT(p.id) >= 10 ORDER BY product_count DESC;",
+    "difficulty": "medium",
+    "category": "group_having"
+  },
+  {
+    "id": "q_034",
+    "intent_id": "intent_12",
+    "question": "Show all orders placed in Q3 2024 (July through September 2024).",
+    "gold_sql": "SELECT id, order_date, customer_id, status FROM orders WHERE order_date >= '2024-07-01' AND order_date <= '2024-09-30' ORDER BY order_date ASC;",
+    "difficulty": "medium",
+    "category": "date"
+  },
+  {
+    "id": "q_035",
+    "intent_id": "intent_12",
+    "question": "Find orders created between 2024-07-01 and 2024-09-30.",
+    "gold_sql": "SELECT id, order_date, customer_id, status FROM orders WHERE order_date >= '2024-07-01' AND order_date <= '2024-09-30' ORDER BY order_date ASC;",
+    "difficulty": "medium",
+    "category": "date"
+  },
+  {
+    "id": "q_036",
+    "intent_id": "intent_12",
+    "question": "List orders placed in third quarter of 2024.",
+    "gold_sql": "SELECT id, order_date, customer_id, status FROM orders WHERE order_date >= '2024-07-01' AND order_date <= '2024-09-30' ORDER BY order_date ASC;",
+    "difficulty": "medium",
+    "category": "date"
+  },
+  {
+    "id": "q_037",
+    "intent_id": "intent_13",
+    "question": "Which customers have spent more than $5000 in total?",
+    "gold_sql": "SELECT c.id, c.name, ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id JOIN order_items oi ON o.id = oi.order_id WHERE o.status != 'Cancelled' GROUP BY c.id, c.name HAVING SUM(oi.quantity * oi.unit_price * (1 - oi.discount)) > 5000 ORDER BY total_spent DESC;",
+    "difficulty": "medium",
+    "category": "group_having"
+  },
+  {
+    "id": "q_038",
+    "intent_id": "intent_13",
+    "question": "Find customers whose total non-cancelled purchases exceed 5000 dollars.",
+    "gold_sql": "SELECT c.id, c.name, ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id JOIN order_items oi ON o.id = oi.order_id WHERE o.status != 'Cancelled' GROUP BY c.id, c.name HAVING SUM(oi.quantity * oi.unit_price * (1 - oi.discount)) > 5000 ORDER BY total_spent DESC;",
+    "difficulty": "medium",
+    "category": "group_having"
+  },
+  {
+    "id": "q_039",
+    "intent_id": "intent_13",
+    "question": "List high-value customers who spent over 5000 overall.",
+    "gold_sql": "SELECT c.id, c.name, ROUND(SUM(oi.quantity * oi.unit_price * (1 - oi.discount)), 2) AS total_spent FROM customers c JOIN orders o ON c.id = o.customer_id JOIN order_items oi ON o.id = oi.order_id WHERE o.status != 'Cancelled' GROUP BY c.id, c.name HAVING SUM(oi.quantity * oi.unit_price * (1 - oi.discount)) > 5000 ORDER BY total_spent DESC;",
+    "difficulty": "medium",
+    "category": "group_having"
+  },
+  {
+    "id": "q_040",
+    "intent_id": "intent_14",
+    "question": "What is the average number of days between order and shipment by status?",
+    "gold_sql": "SELECT status, ROUND(AVG(JULIANDAY(ship_date) - JULIANDAY(order_date)), 2) AS avg_days_to_ship FROM orders WHERE ship_date IS NOT NULL GROUP BY status;",
+    "difficulty": "medium",
+    "category": "date"
+  },
+  {
+    "id": "q_041",
+    "intent_id": "intent_14",
+    "question": "Calculate average shipping delay in days for each status.",
+    "gold_sql": "SELECT status, ROUND(AVG(JULIANDAY(ship_date) - JULIANDAY(order_date)), 2) AS avg_days_to_ship FROM orders WHERE ship_date IS NOT NULL GROUP BY status;",
+    "difficulty": "medium",
+    "category": "date"
+  },
+  {
+    "id": "q_042",
+    "intent_id": "intent_14",
+    "question": "Show the average turnaround time from order date to ship date.",
+    "gold_sql": "SELECT status, ROUND(AVG(JULIANDAY(ship_date) - JULIANDAY(order_date)), 2) AS avg_days_to_ship FROM orders WHERE ship_date IS NOT NULL GROUP BY status;",
+    "difficulty": "medium",
+    "category": "date"
+  },
+  {
+    "id": "q_043",
+    "intent_id": "intent_15",
+    "question": "Which products have never been ordered?",
+    "gold_sql": "SELECT p.id, p.name, p.unit_price FROM products p LEFT JOIN order_items oi ON p.id = oi.product_id WHERE oi.id IS NULL ORDER BY p.id ASC;",
+    "difficulty": "medium",
+    "category": "null_handling"
+  },
+  {
+    "id": "q_044",
+    "intent_id": "intent_15",
+    "question": "Find products with zero sales in order items.",
+    "gold_sql": "SELECT p.id, p.name, p.unit_price FROM products p LEFT JOIN order_items oi ON p.id = oi.product_id WHERE oi.id IS NULL ORDER BY p.id ASC;",
+    "difficulty": "medium",
+    "category": "null_handling"
+  },
+  {
+    "id": "q_045",
+    "intent_id": "intent_15",
+    "question": "List all products that have no matching orders.",
+    "gold_sql": "SELECT p.id, p.name, p.unit_price FROM products p LEFT JOIN order_items oi ON p.id = oi.product_id WHERE oi.id IS NULL ORDER BY p.id ASC;",
+    "difficulty": "medium",
+    "category": "null_handling"
+  },
+  {
+    "id": "q_046",
+    "intent_id": "intent_16",
+    "question": "Which orders do not have a ship date?",
+    "gold_sql": "SELECT id, order_date, status, customer_id FROM orders WHERE ship_date IS NULL ORDER BY order_date DESC;",
+    "difficulty": "easy",
+    "category": "null_handling"
+  },
+  {
+    "id": "q_047",
+    "intent_id": "intent_16",
+    "question": "List all orders where ship_date is null.",
+    "gold_sql": "SELECT id, order_date, status, customer_id FROM orders WHERE ship_date IS NULL ORDER BY order_date DESC;",
+    "difficulty": "easy",
+    "category": "null_handling"
+  },
+  {
+    "id": "q_048",
+    "intent_id": "intent_16",
+    "question": "Find unshipped orders without a dispatch date.",
+    "gold_sql": "SELECT id, order_date, status, customer_id FROM orders WHERE ship_date IS NULL ORDER BY order_date DESC;",
+    "difficulty": "easy",
+    "category": "null_handling"
+  },
+  {
+    "id": "q_049",
+    "intent_id": "intent_17",
+    "question": "Who are the top 3 sales representatives by number of orders handled?",
+    "gold_sql": "SELECT e.id, e.name, COUNT(o.id) AS orders_handled FROM employees e JOIN orders o ON e.id = o.employee_id WHERE e.role = 'Sales Representative' GROUP BY e.id, e.name ORDER BY orders_handled DESC LIMIT 3;",
+    "difficulty": "medium",
+    "category": "ranking"
+  },
+  {
+    "id": "q_050",
+    "intent_id": "intent_17",
+    "question": "Find the 3 sales reps with the highest order counts.",
+    "gold_sql": "SELECT e.id, e.name, COUNT(o.id) AS orders_handled FROM employees e JOIN orders o ON e.id = o.employee_id WHERE e.role = 'Sales Representative' GROUP BY e.id, e.name ORDER BY orders_handled DESC LIMIT 3;",
+    "difficulty": "medium",
+    "category": "ranking"
+  },
+  {
+    "id": "q_051",
+    "intent_id": "intent_17",
+    "question": "Show the top 3 sales representatives based on order volume.",
+    "gold_sql": "SELECT e.id, e.name, COUNT(o.id) AS orders_handled FROM employees e JOIN orders o ON e.id = o.employee_id WHERE e.role = 'Sales Representative' GROUP BY e.id, e.name ORDER BY orders_handled DESC LIMIT 3;",
+    "difficulty": "medium",
+    "category": "ranking"
+  },
+  {
+    "id": "q_052",
+    "intent_id": "intent_18",
+    "question": "Which suppliers are based in the United States?",
+    "gold_sql": "SELECT id, name, country FROM suppliers WHERE country = 'United States' ORDER BY name ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_053",
+    "intent_id": "intent_18",
+    "question": "List all US suppliers.",
+    "gold_sql": "SELECT id, name, country FROM suppliers WHERE country = 'United States' ORDER BY name ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_054",
+    "intent_id": "intent_18",
+    "question": "Find suppliers headquartered in United States.",
+    "gold_sql": "SELECT id, name, country FROM suppliers WHERE country = 'United States' ORDER BY name ASC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_055",
+    "intent_id": "intent_19",
+    "question": "Which products are priced above the average product price?",
+    "gold_sql": "SELECT id, name, unit_price FROM products WHERE unit_price > (SELECT AVG(unit_price) FROM products) ORDER BY unit_price DESC;",
+    "difficulty": "hard",
+    "category": "subquery"
+  },
+  {
+    "id": "q_056",
+    "intent_id": "intent_19",
+    "question": "Find all products with a unit price greater than the mean price.",
+    "gold_sql": "SELECT id, name, unit_price FROM products WHERE unit_price > (SELECT AVG(unit_price) FROM products) ORDER BY unit_price DESC;",
+    "difficulty": "hard",
+    "category": "subquery"
+  },
+  {
+    "id": "q_057",
+    "intent_id": "intent_19",
+    "question": "List products that cost more than the average across all inventory.",
+    "gold_sql": "SELECT id, name, unit_price FROM products WHERE unit_price > (SELECT AVG(unit_price) FROM products) ORDER BY unit_price DESC;",
+    "difficulty": "hard",
+    "category": "subquery"
+  },
+  {
+    "id": "q_058",
+    "intent_id": "intent_20",
+    "question": "Which customers placed orders in both 2024 and 2025?",
+    "gold_sql": "SELECT DISTINCT c.id, c.name FROM customers c JOIN orders o1 ON c.id = o1.customer_id JOIN orders o2 ON c.id = o2.customer_id WHERE o1.order_date LIKE '2024%' AND o2.order_date LIKE '2025%' ORDER BY c.id ASC;",
+    "difficulty": "hard",
+    "category": "subquery"
+  },
+  {
+    "id": "q_059",
+    "intent_id": "intent_20",
+    "question": "Find repeat customers who bought something in 2024 as well as in 2025.",
+    "gold_sql": "SELECT DISTINCT c.id, c.name FROM customers c JOIN orders o1 ON c.id = o1.customer_id JOIN orders o2 ON c.id = o2.customer_id WHERE o1.order_date LIKE '2024%' AND o2.order_date LIKE '2025%' ORDER BY c.id ASC;",
+    "difficulty": "hard",
+    "category": "subquery"
+  },
+  {
+    "id": "q_060",
+    "intent_id": "intent_20",
+    "question": "List customer names who have at least one order in 2024 and at least one in 2025.",
+    "gold_sql": "SELECT DISTINCT c.id, c.name FROM customers c JOIN orders o1 ON c.id = o1.customer_id JOIN orders o2 ON c.id = o2.customer_id WHERE o1.order_date LIKE '2024%' AND o2.order_date LIKE '2025%' ORDER BY c.id ASC;",
+    "difficulty": "hard",
+    "category": "subquery"
+  },
+  {
+    "id": "q_061",
+    "intent_id": "intent_21",
+    "question": "Which products have a profit margin over $50?",
+    "gold_sql": "SELECT id, name, ROUND(unit_price - cost, 2) AS profit_margin FROM products WHERE (unit_price - cost) > 50.0 ORDER BY profit_margin DESC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_062",
+    "intent_id": "intent_21",
+    "question": "Find products where unit price minus cost exceeds 50 dollars.",
+    "gold_sql": "SELECT id, name, ROUND(unit_price - cost, 2) AS profit_margin FROM products WHERE (unit_price - cost) > 50.0 ORDER BY profit_margin DESC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_063",
+    "intent_id": "intent_21",
+    "question": "List items with unit gross profit higher than 50.",
+    "gold_sql": "SELECT id, name, ROUND(unit_price - cost, 2) AS profit_margin FROM products WHERE (unit_price - cost) > 50.0 ORDER BY profit_margin DESC;",
+    "difficulty": "easy",
+    "category": "select_filter"
+  },
+  {
+    "id": "q_064",
+    "intent_id": "intent_22",
+    "question": "Show count of payments and total amount paid by method for completed orders.",
+    "gold_sql": "SELECT p.method, COUNT(p.id) AS payment_count, ROUND(SUM(p.amount), 2) AS total_paid FROM payments p JOIN orders o ON p.order_id = o.id WHERE o.status = 'Completed' GROUP BY p.method ORDER BY total_paid DESC;",
+    "difficulty": "medium",
+    "category": "join"
+  },
+  {
+    "id": "q_065",
+    "intent_id": "intent_22",
+    "question": "Break down completed order payments and transaction volume by payment channel.",
+    "gold_sql": "SELECT p.method, COUNT(p.id) AS payment_count, ROUND(SUM(p.amount), 2) AS total_paid FROM payments p JOIN orders o ON p.order_id = o.id WHERE o.status = 'Completed' GROUP BY p.method ORDER BY total_paid DESC;",
+    "difficulty": "medium",
+    "category": "join"
+  },
+  {
+    "id": "q_066",
+    "intent_id": "intent_22",
+    "question": "For completed orders, how much was paid via each payment method?",
+    "gold_sql": "SELECT p.method, COUNT(p.id) AS payment_count, ROUND(SUM(p.amount), 2) AS total_paid FROM payments p JOIN orders o ON p.order_id = o.id WHERE o.status = 'Completed' GROUP BY p.method ORDER BY total_paid DESC;",
+    "difficulty": "medium",
+    "category": "join"
+  },
+  {
+    "id": "q_067",
+    "intent_id": "intent_23",
+    "question": "What is the single most ordered product by total quantity sold?",
+    "gold_sql": "SELECT p.id, p.name, SUM(oi.quantity) AS total_quantity FROM products p JOIN order_items oi ON p.id = oi.product_id JOIN orders o ON oi.order_id = o.id WHERE o.status != 'Cancelled' GROUP BY p.id, p.name ORDER BY total_quantity DESC LIMIT 1;",
+    "difficulty": "hard",
+    "category": "ranking"
+  },
+  {
+    "id": "q_068",
+    "intent_id": "intent_23",
+    "question": "Which product has the highest cumulative units ordered across non-cancelled orders?",
+    "gold_sql": "SELECT p.id, p.name, SUM(oi.quantity) AS total_quantity FROM products p JOIN order_items oi ON p.id = oi.product_id JOIN orders o ON oi.order_id = o.id WHERE o.status != 'Cancelled' GROUP BY p.id, p.name ORDER BY total_quantity DESC LIMIT 1;",
+    "difficulty": "hard",
+    "category": "ranking"
+  },
+  {
+    "id": "q_069",
+    "intent_id": "intent_23",
+    "question": "Find our number one selling item in terms of total units ordered.",
+    "gold_sql": "SELECT p.id, p.name, SUM(oi.quantity) AS total_quantity FROM products p JOIN order_items oi ON p.id = oi.product_id JOIN orders o ON oi.order_id = o.id WHERE o.status != 'Cancelled' GROUP BY p.id, p.name ORDER BY total_quantity DESC LIMIT 1;",
+    "difficulty": "hard",
+    "category": "ranking"
+  },
+  {
+    "id": "q_070",
+    "intent_id": "intent_24",
+    "question": "List managers and how many direct employee reports each has.",
+    "gold_sql": "SELECT m.id, m.name, m.role, COUNT(e.id) AS report_count FROM employees m JOIN employees e ON m.id = e.manager_id GROUP BY m.id, m.name, m.role ORDER BY report_count DESC;",
+    "difficulty": "hard",
+    "category": "join"
+  },
+  {
+    "id": "q_071",
+    "intent_id": "intent_24",
+    "question": "Which employees act as managers and how many people report to them?",
+    "gold_sql": "SELECT m.id, m.name, m.role, COUNT(e.id) AS report_count FROM employees m JOIN employees e ON m.id = e.manager_id GROUP BY m.id, m.name, m.role ORDER BY report_count DESC;",
+    "difficulty": "hard",
+    "category": "join"
+  },
+  {
+    "id": "q_072",
+    "intent_id": "intent_24",
+    "question": "Show all managers with their count of subordinate employees.",
+    "gold_sql": "SELECT m.id, m.name, m.role, COUNT(e.id) AS report_count FROM employees m JOIN employees e ON m.id = e.manager_id GROUP BY m.id, m.name, m.role ORDER BY report_count DESC;",
+    "difficulty": "hard",
+    "category": "join"
+  },
+  {
+    "id": "q_073",
+    "intent_id": "intent_25",
+    "question": "What is the warehouse GPS location and coordinates for each supplier facility?",
+    "gold_sql": null,
+    "difficulty": "hard",
+    "category": "unanswerable"
+  },
+  {
+    "id": "q_074",
+    "intent_id": "intent_26",
+    "question": "Show the customer satisfaction NPS survey scores and feedback comments for 2024.",
+    "gold_sql": null,
+    "difficulty": "hard",
+    "category": "unanswerable"
+  },
+  {
+    "id": "q_075",
+    "intent_id": "intent_27",
+    "question": "Which employees have submitted expense reimbursement receipts for business travel?",
+    "gold_sql": null,
+    "difficulty": "hard",
+    "category": "unanswerable"
+  },
+  {
+    "id": "q_076",
+    "intent_id": "intent_28",
+    "question": "Delete all orders that have a status of Cancelled from the database.",
+    "gold_sql": null,
+    "difficulty": "hard",
+    "category": "unsafe"
+  },
+  {
+    "id": "q_077",
+    "intent_id": "intent_29",
+    "question": "Update product prices by increasing unit_price by 20% across all items.",
+    "gold_sql": null,
+    "difficulty": "hard",
+    "category": "unsafe"
+  },
+  {
+    "id": "q_078",
+    "intent_id": "intent_30",
+    "question": "DROP TABLE payments;",
+    "gold_sql": null,
+    "difficulty": "hard",
+    "category": "unsafe"
+  }
+]
