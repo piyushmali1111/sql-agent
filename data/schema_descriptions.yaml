@@ -1,0 +1,137 @@
+# Business-friendly schema descriptions, units, and enumerations
+# Used to enrich live database schema inspection for semantic retrieval and prompt context
+
+tables:
+  categories:
+    description: "Product categories classification table."
+    columns:
+      id:
+        description: "Unique integer identifier for the category (primary key)."
+      name:
+        description: "Name of the product category."
+        examples: ["Laptops & Computers", "Computer Accessories", "Monitors & Displays", "Office Furniture"]
+
+  suppliers:
+    description: "Hardware and office supply vendors who manufacture or distribute products."
+    columns:
+      id:
+        description: "Unique integer identifier for the supplier (primary key)."
+      name:
+        description: "Company name of the supplier."
+      country:
+        description: "Country where the supplier is headquartered."
+        examples: ["United States", "Germany", "Japan", "China", "India", "Taiwan"]
+
+  employees:
+    description: "Company personnel including sales leadership and regional representatives."
+    columns:
+      id:
+        description: "Unique integer identifier for the employee (primary key)."
+      name:
+        description: "Full name of the employee."
+      role:
+        description: "Job title or position of the employee."
+        enums: ["VP of Sales", "Regional Sales Manager", "Sales Representative"]
+      hire_date:
+        description: "Date the employee joined the company (ISO format YYYY-MM-DD)."
+      manager_id:
+        description: "Employee ID of this employee's direct manager (self-referencing foreign key to employees.id). NULL for executive leadership."
+      region:
+        description: "Geographic sales region covered by the employee."
+        enums: ["Global", "North America", "Europe", "Asia-Pacific", "South Asia"]
+
+  products:
+    description: "Inventory items offered for sale across various technology and office equipment categories."
+    columns:
+      id:
+        description: "Unique integer identifier for the product (primary key)."
+      name:
+        description: "Commercial name of the product item."
+      category_id:
+        description: "Foreign key referencing categories.id."
+      unit_price:
+        description: "Standard retail price per unit in USD."
+        unit: "USD"
+      cost:
+        description: "Wholesale acquisition cost per unit in USD."
+        unit: "USD"
+      stock_quantity:
+        description: "Current physical stock quantity remaining in inventory warehouse."
+      supplier_id:
+        description: "Foreign key referencing suppliers.id."
+
+  customers:
+    description: "Business and individual customer accounts."
+    columns:
+      id:
+        description: "Unique integer identifier for the customer (primary key)."
+      name:
+        description: "Full name of the customer."
+      email:
+        description: "Customer email address."
+      city:
+        description: "City of customer residence or corporate headquarters."
+      state:
+        description: "State or province code (e.g., NY, CA, TX, ON, ENG, BY, MH)."
+      country:
+        description: "Country of customer."
+        examples: ["United States", "Canada", "United Kingdom", "Germany", "India", "Australia"]
+      signup_date:
+        description: "Date the customer registered (ISO format YYYY-MM-DD)."
+      segment:
+        description: "Market customer segment."
+        enums: ["Consumer", "Corporate", "Small Business"]
+
+  orders:
+    description: "Sales transactions placed by customers, handled by sales employees."
+    columns:
+      id:
+        description: "Unique integer identifier for the order (primary key)."
+      customer_id:
+        description: "Foreign key referencing customers.id."
+      employee_id:
+        description: "Foreign key referencing employees.id (sales representative handling the deal)."
+      order_date:
+        description: "Date order was placed (ISO format YYYY-MM-DD)."
+      ship_date:
+        description: "Date order was dispatched (ISO format YYYY-MM-DD). May be NULL if cancelled or still processing."
+      status:
+        description: "Current fulfillment lifecycle status of the order."
+        enums: ["Completed", "Shipped", "Processing", "Cancelled", "Refunded"]
+      shipping_city:
+        description: "Destination city for the package delivery."
+
+  order_items:
+    description: "Individual line items comprising each order, linking products and quantities."
+    columns:
+      id:
+        description: "Unique integer identifier for the line item (primary key)."
+      order_id:
+        description: "Foreign key referencing orders.id."
+      product_id:
+        description: "Foreign key referencing products.id."
+      quantity:
+        description: "Number of units ordered of this product."
+      unit_price:
+        description: "Agreed price per unit in USD at the time the order was placed."
+        unit: "USD"
+      discount:
+        description: "Discount applied to the line item as a decimal rate (e.g. 0.05 for 5%, 0.10 for 10%)."
+        unit: "rate"
+
+  payments:
+    description: "Monetary transactions recorded against customer orders."
+    columns:
+      id:
+        description: "Unique integer identifier for the payment (primary key)."
+      order_id:
+        description: "Foreign key referencing orders.id."
+      payment_date:
+        description: "Timestamp or date when payment was settled (ISO format YYYY-MM-DD)."
+      method:
+        description: "Payment channel used to complete the transaction."
+        enums: ["Credit Card", "PayPal", "Bank Transfer", "Debit Card"]
+      amount:
+        description: "Total payment amount settled in USD."
+        unit: "USD"
+
